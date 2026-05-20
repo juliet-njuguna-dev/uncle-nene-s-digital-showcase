@@ -84,10 +84,12 @@ function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href={`tel:${PHONE}`}
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-gradient-ember px-8 py-4 font-semibold text-primary-foreground shadow-ember hover:scale-105 transition"
             >
-              Order Pickup or Delivery
+              Order on WhatsApp
             </a>
             <a
               href="#menu"
