@@ -25,6 +25,8 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "+254736713761";
 const PHONE_DISPLAY = "+254 736 713 761";
+const WHATSAPP = "https://wa.me/254736713761?text=Hi%20Uncle%20Nene%27s%2C%20I%27d%20like%20to%20place%20an%20order";
+const EMAIL = "uncleneneskitchen@gmail.com";
 
 function Nav() {
   return (
