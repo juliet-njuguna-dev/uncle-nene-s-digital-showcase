@@ -115,30 +115,90 @@ function Hero() {
   );
 }
 
-const menu = [
+type MenuItem = { name: string; price: string; note?: string };
+type MenuCategory = { title: string; tagline?: string; img?: string; items: MenuItem[] };
+
+const menuCategories: MenuCategory[] = [
   {
-    img: heroBurger,
-    name: "The OG Smash",
-    desc: "Double beef patty, melted cheddar, crispy bacon, brioche bun.",
-    price: "KES 950",
-  },
-  {
-    img: burger2,
-    name: "Nene's Double Cheese",
-    desc: "Two juicy patties, triple cheese, signature secret sauce.",
-    price: "KES 1,100",
-  },
-  {
+    title: "Beef Loaded Fries",
+    tagline: "Signature seasoned fries piled high.",
     img: fries,
-    name: "Loaded Golden Fries",
-    desc: "Hand-cut, twice-fried, dusted with our house seasoning blend.",
-    price: "KES 450",
+    items: [
+      { name: "Classic Beef", price: "1,000" },
+      { name: "Beef Cheese", price: "1,000" },
+      { name: "Beef Bacon", price: "1,000" },
+      { name: "Beef Bacon Cheese", price: "1,000" },
+    ],
   },
   {
+    title: "Chicken Loaded Fries",
+    tagline: "Crispy chicken on golden fries.",
     img: wings,
-    name: "Sticky Fire Wings",
-    desc: "Crispy wings glazed in our smoky hot honey BBQ.",
-    price: "KES 850",
+    items: [
+      { name: "Classic Chicken", price: "1,000" },
+      { name: "Chicken Cheese", price: "1,000" },
+      { name: "Chicken Bacon", price: "1,000" },
+      { name: "Chicken Bacon Cheese", price: "1,000" },
+    ],
+  },
+  {
+    title: "Burgers",
+    tagline: "All burgers served with our signature seasoned fries.",
+    img: heroBurger,
+    items: [
+      { name: "Classic Beef", price: "1,000" },
+      { name: "Classic Chicken", price: "1,000" },
+      { name: "Beef Bacon", price: "1,100" },
+      { name: "Beef Bacon Cheese", price: "1,100" },
+      { name: "Beef Cheese", price: "1,100" },
+      { name: "Chicken Cheese", price: "1,100" },
+      { name: "Chicken Bacon", price: "1,100" },
+      { name: "Chicken Bacon Cheese", price: "1,100" },
+      { name: "Beast Burger", price: "1,300", note: "House special" },
+    ],
+  },
+  {
+    title: "Double Burgers",
+    tagline: "Make any burger a double.",
+    img: burger2,
+    items: [{ name: "Double Up (any burger)", price: "+200" }],
+  },
+  {
+    title: "Fish",
+    items: [{ name: "Fish Fingers & Fries", price: "1,100" }],
+  },
+  {
+    title: "Family Pack",
+    tagline: "Built to share.",
+    items: [
+      {
+        name: "Patty Party Pack",
+        price: "4,800",
+        note: "Classic Beef, Classic Chicken, Beef Cheese, Chicken Cheese & Beef Bacon Cheese burgers",
+      },
+    ],
+  },
+  {
+    title: "Extras",
+    items: [
+      { name: "Egg", price: "100" },
+      { name: "Cheese", price: "100" },
+      { name: "French Toast Bun", price: "100" },
+      { name: "Bacon", price: "150" },
+      { name: "Avocado", price: "100" },
+      { name: "Coleslaw", price: "100" },
+      { name: "Burger Sauce (dip)", price: "50" },
+      { name: "Extra Tartar Sauce", price: "100" },
+    ],
+  },
+  {
+    title: "Drinks",
+    items: [
+      { name: "Water 500ml", price: "120" },
+      { name: "Soda 350ml", price: "100" },
+      { name: "Soda 500ml", price: "120" },
+      { name: "Minute Maid 400ml", price: "150" },
+    ],
   },
 ];
 
@@ -154,35 +214,90 @@ function Menu() {
             </h2>
           </div>
           <p className="max-w-sm text-muted-foreground">
-            Every order made fresh. Every bite worth the trip. No shortcuts.
+            All prices in KES. Every order made fresh. No shortcuts.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {menu.map((item) => (
+        <div className="grid md:grid-cols-2 gap-6">
+          {menuCategories.map((cat) => (
             <article
-              key={item.name}
-              className="group rounded-2xl overflow-hidden bg-background border border-border hover:border-ember/60 transition-all hover:-translate-y-1 hover:shadow-ember"
+              key={cat.title}
+              className="rounded-2xl overflow-hidden bg-background border border-border hover:border-ember/60 transition-all"
             >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  loading="lazy"
-                  width={600}
-                  height={600}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display text-2xl uppercase">{item.name}</h3>
-                  <span className="text-ember font-semibold text-sm">{item.price}</span>
+              {cat.img && (
+                <div className="aspect-[16/7] overflow-hidden">
+                  <img
+                    src={cat.img}
+                    alt={cat.title}
+                    loading="lazy"
+                    width={800}
+                    height={350}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              )}
+              <div className="p-6 md:p-8">
+                <div className="flex items-baseline justify-between gap-4 mb-1">
+                  <h3 className="font-display text-3xl uppercase">{cat.title}</h3>
+                  <span className="text-xs uppercase tracking-widest text-ember">KES</span>
+                </div>
+                {cat.tagline && (
+                  <p className="text-sm text-muted-foreground mb-5">{cat.tagline}</p>
+                )}
+                <ul className="divide-y divide-border/60">
+                  {cat.items.map((item) => (
+                    <li key={item.name} className="py-3 flex items-start justify-between gap-4">
+                      <div>
+                        <div className="font-semibold">{item.name}</div>
+                        {item.note && (
+                          <div className="text-xs text-muted-foreground mt-1">{item.note}</div>
+                        )}
+                      </div>
+                      <div className="font-display text-xl text-ember whitespace-nowrap">
+                        {item.price}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-16 rounded-2xl border border-ember/40 bg-gradient-to-br from-background to-charcoal p-8 md:p-12 text-center">
+          <div className="text-xs uppercase tracking-[0.3em] text-ember mb-3">Ready to order?</div>
+          <h3 className="font-display text-4xl md:text-5xl uppercase mb-6">
+            Message us. We'll fire it up.
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-charcoal px-7 py-4 font-semibold hover:scale-105 transition shadow-deep"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true">
+                <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3C4.1 15.1 3.7 13.6 3.7 12 3.7 7.5 7.5 3.7 12 3.7s8.3 3.8 8.3 8.3-3.8 8.3-8.3 8.3z" />
+              </svg>
+              WhatsApp +254 736 713 761
+            </a>
+            <a
+              href={`mailto:${EMAIL}?subject=Order%20from%20Uncle%20Nene%27s`}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-7 py-4 font-semibold hover:border-ember/60 transition"
+            >
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+              {EMAIL}
+            </a>
+            <a
+              href={`tel:${PHONE}`}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-7 py-4 font-semibold hover:border-ember/60 transition"
+            >
+              Call {PHONE_DISPLAY}
+            </a>
+          </div>
         </div>
       </div>
     </section>
