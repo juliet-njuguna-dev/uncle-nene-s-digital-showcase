@@ -43,10 +43,12 @@ function Nav() {
           <a href="#visit" className="hover:text-foreground transition">Visit</a>
         </nav>
         <a
-          href={`tel:${PHONE}`}
+          href={WHATSAPP}
+          target="_blank"
+          rel="noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-gradient-ember px-5 py-2 text-sm font-semibold text-primary-foreground shadow-ember hover:scale-105 transition"
         >
-          Order Now
+          Order on WhatsApp
         </a>
       </div>
     </header>
