@@ -420,10 +420,24 @@ function CTA() {
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
-            href={`tel:${PHONE}`}
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-charcoal text-cream px-8 py-4 font-semibold hover:scale-105 transition shadow-deep"
           >
+            WhatsApp Us
+          </a>
+          <a
+            href={`tel:${PHONE}`}
+            className="inline-flex items-center justify-center rounded-full border-2 border-charcoal px-8 py-4 font-semibold text-charcoal hover:bg-charcoal hover:text-cream transition"
+          >
             Call {PHONE_DISPLAY}
+          </a>
+          <a
+            href={`mailto:${EMAIL}`}
+            className="inline-flex items-center justify-center rounded-full border-2 border-charcoal px-8 py-4 font-semibold text-charcoal hover:bg-charcoal hover:text-cream transition"
+          >
+            Email Us
           </a>
           <a
             href="https://www.google.com/maps/search/?api=1&query=Uncle+Nene's+Mbagathi+Road+Ngummo"
